@@ -1,0 +1,100 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 20% 5%; /* Much darker background */
+    --foreground: 220 40% 98%;
+
+    --card: 225 15% 15%;
+    --card-foreground: 220 40% 98%;
+
+    --popover: 225 15% 12%;
+    --popover-foreground: 220 40% 98%;
+
+    --primary: 240 60% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 225 15% 15%;
+    --secondary-foreground: 240 60% 55%;
+
+    --muted: 210 20% 97%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 240 20% 97%;
+    --accent-foreground: 240 60% 55%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 15% 20%;
+    --input: 220 20% 90%;
+    --ring: 240 60% 55%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-light;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    position: relative;
+  }
+  
+  /* Remove the old glow effect since we now have particles */
+  body::before {
+    content: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-light tracking-tight;
+  }
+  
+  p {
+    @apply text-foreground/80;
+  }
+}
+
+@layer components {
+  .neo-button {
+    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-light text-sm text-foreground rounded-lg shadow-[0_5px_15px_rgba(0,0,0,0.2)] bg-gradient-to-br from-secondary to-secondary/80 transition-all duration-300 ease-out hover:shadow-[0_8px_25px_rgba(var(--primary)/0.4)] hover:from-secondary hover:to-primary/20 focus:outline-none;
+  }
+  
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-lg rounded-2xl border border-white/5 shadow-lg transition-transform duration-300 hover:scale-[1.02];
+  }
+  
+  .reveal-on-scroll {
+    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out;
+  }
+  
+  .reveal-on-scroll.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .blur-header {
+    @apply bg-background/80 backdrop-blur-md border-b border-white/5;
+  }
+}
+
+.animate-on-load {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
